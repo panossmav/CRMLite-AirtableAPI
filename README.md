@@ -68,6 +68,14 @@ Create a new Airtable base with the following tables. All table and field names 
 | User Type | Single line text |
 | User ID | Autonumber |
 
+#### `Sessions` *(Primary Field: Session ID)*
+| Field | Type |
+|---|---|
+| user | Single line text |
+| DateTime | Single line text |
+| Session ID | Autonumber |
+
+
 > **Important:** You must manually create at least one admin user directly in the `App users` table. SHA256-encrypt the password before saving it — you can use [this tool](https://emn178.github.io/online-tools/sha256.html). Set `User Type` to `admin` (lowercase, case sensitive).
 
 #### `User Logs` *(Primary Field: Log ID)*

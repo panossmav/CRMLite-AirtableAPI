@@ -22,7 +22,13 @@ products_table = api.table(base_id,"Products")
 orders_table = api.table(base_id,"Orders")
 users_table = api.table(base_id,"App users")
 logs_table = api.table(base_id,"User Logs")
+sessions_table = api.table(base_id,"Sessions")
 
+def log_session(username):
+    sessions_table.create(
+        {"user":username,
+        "DateTime":str(datetime.now())}
+    )
 
 def check_user_pass(u, p):
     p_e = hashlib.sha256(p.encode()).hexdigest()
@@ -36,6 +42,7 @@ def check_user_pass(u, p):
         password = usern[0]["fields"].get("Password")
         if password == p_e:
             create_user_logs(u,'Logged in.')
+            log_session(u)
             if us_type == 'admin':
                 return True,True  # Auth success and user is an admin
             else:
